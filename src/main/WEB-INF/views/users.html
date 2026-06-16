@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background: #f7f7f7;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+
+        .table th {
+            background: #2c3e50;
+            color: white;
+            text-align: left;
+        }
+
+        .row {
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .row:hover {
+            background: #eef6ff;
+        }
+
+        .btn {
+            padding: 6px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-size: 13px;
+        }
+
+        .edit { background: #2980b9; }
+        .delete { background: #c0392b; }
+
+        .top-bar {
+            margin-bottom: 15px;
+        }
+
+        .add-btn {
+            background: #27ae60;
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Users</h1>
+
+<div class="top-bar">
+    <a class="add-btn" th:href="@{/users/create}">+ Add user</a>
+</div>
+
+<table class="table">
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr class="row"
+        th:each="user : ${users}"
+        th:onclick="'window.location=\'/users/' + ${user.id} + '\''">
+
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.age}"></td>
+
+        <td onclick="event.stopPropagation()">
+            <a class="btn edit"
+               th:href="@{'/users/edit/' + ${user.id}}">
+                Edit
+            </a>
+
+            <a class="btn delete"
+               th:href="@{'/users/delete/' + ${user.id}}"
+               onclick="return confirm('Delete user?')">
+                Delete
+            </a>
+        </td>
+
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>

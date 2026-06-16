@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Form</title>
+</head>
+<body><h1 xmlns:th="http://www.w3.org/1999/xhtml">User address</h1>
+
+
+<p th:text="${user.name}"></p>
+
+<p th:text="${user.address.city}"></p>
+<p th:text="${user.address.street}"></p>
+<p th:text="${user.address.house}"></p>
+
+<a href="/users">Back</a>
