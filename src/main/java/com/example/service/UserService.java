@@ -16,7 +16,6 @@ public class UserService {
     public UserService(UserRepository userRepository) {this.userRepository = userRepository;}
 
     public void save(User user) {
-
         if (user.getAddress() != null) {
             Address address = user.getAddress();
             address.setUser(user);
@@ -47,15 +46,6 @@ public class UserService {
     public User findById(int id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found: " + id));
-    }
-
-
-    public void findUsersByHouse(int house) {
-        userRepository.findByAddressHouse(house).forEach(System.out::println);
-    }
-
-    public void deleteAllUsers(){
-        userRepository.deleteAll();
     }
 
     public List<User> findAll() {
